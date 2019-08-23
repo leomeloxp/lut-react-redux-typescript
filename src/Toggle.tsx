@@ -1,11 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, DispatchProp } from 'react-redux';
+import { EReduxActionTypes, IReduxActions } from './reducer';
 import { AppState } from './rootReducer';
 
-const Toggle: React.FC<{ messageVisibility: boolean }> = ({ messageVisibility }) => (
+const Toggle: React.FC<{ messageVisibility: boolean } & DispatchProp<IReduxActions>> = ({
+  messageVisibility,
+  dispatch
+}) => (
   <div>
     {messageVisibility && <p>You will be seeing this if redux action is toggled</p>}
-    <button>Toggle Me</button>
+    <button
+      onClick={() => {
+        dispatch({ type: EReduxActionTypes.TOGGLE_MESSAGE });
+      }}
+    >
+      Toggle Me
+    </button>
   </div>
 );
 

@@ -18,7 +18,7 @@ export default function(state: IReduxState = initialState, action: IReduxActions
   const { type } = action;
   switch (type) {
     case EReduxActionTypes.TOGGLE_MESSAGE:
-      return state;
+      return { ...state, messageVisibility: !state.messageVisibility };
     default:
       return state;
   }
