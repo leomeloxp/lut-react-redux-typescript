@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import reduxLogger from 'redux-logger';
 import './App.css';
 import logo from './logo.svg';
 import MovieDetail from './MovieDetail';
@@ -10,7 +11,9 @@ import MoviesList from './MoviesList';
 import rootReducer from './rootReducer';
 import Toggle from './Toggle';
 
-const store = createStore(rootReducer, {}, composeWithDevTools());
+const middleware = [reduxLogger];
+
+const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
 const App = () => (
   <Provider store={store}>

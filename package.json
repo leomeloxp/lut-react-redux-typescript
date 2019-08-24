@@ -11,6 +11,7 @@
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
     "styled-components": "^4.3.2"
   },
   "scripts": {
@@ -40,6 +41,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.2",
     "@types/react-router-dom": "^4.3.5",
+    "@types/redux-logger": "^3.0.7",
     "@types/styled-components": "^4.1.18",
     "typescript": "^3.5.3"
   }
