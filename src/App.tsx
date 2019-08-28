@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxLogger from 'redux-logger';
+import thunk from 'redux-thunk';
 import './App.css';
 import logo from './logo.svg';
 import MovieDetail from './MovieDetail';
@@ -11,7 +12,7 @@ import MoviesList from './MoviesList';
 import rootReducer from './rootReducer';
 import Toggle from './Toggle';
 
-const middleware = [reduxLogger];
+const middleware = [reduxLogger, thunk];
 
 const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
