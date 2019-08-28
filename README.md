@@ -9,6 +9,7 @@ You can see the videos for the course that builds this application at [Level Up 
 ## Getting started
 
 - Clone this repo
+- `git checkout end-of-9 # optional, in case you want to re-write the TS code yourself`
 - `npm install`
 - `npm start`
 
@@ -18,7 +19,7 @@ See the Create React App docs for more details on what else can be done with thi
 
 As this project was created using Typescript instead of plain JS, I took some creative liberties and altered the code ever so slightly from what Scott originally wrote for the course. I still tried to keep as much of the code like the original as possible, which means there could be some minor bits which are not as nice Typescript code as it can be written.
 
-The code is organised as one commit per video from video number 9 (where most of the actual project starts). I might try and make these tags so it can be easier to find later.
+The code is organised as one commit per video from video number 9 (where most of the actual project starts). You can check out each of these checkpoints as a git tag for easier access.
 
 If you find anything that is not inline with the course content or you believe to be wrong, feel free to open an issue or submit a PR.
 
