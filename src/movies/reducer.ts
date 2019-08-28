@@ -13,6 +13,7 @@ export interface IMovie {
 export interface IReduxMoviesState {
   movies: IMovie[];
   moviesLoaded: boolean;
+  moviesLoadedAt?: number;
   movie?: IMovie;
   movieLoaded: boolean;
 }
@@ -20,6 +21,7 @@ export interface IReduxMoviesState {
 const initialState: IReduxMoviesState = {
   movies: [],
   moviesLoaded: false,
+  moviesLoadedAt: undefined,
   movie: undefined,
   movieLoaded: false
 };
@@ -29,7 +31,7 @@ type TMoviesReducerActions = IReduxGetMoviesAction | IReduxGetMovieAction | IRed
 export default function(state: IReduxMoviesState = initialState, action: TMoviesReducerActions) {
   switch (action.type) {
     case EReduxActionTypes.GET_MOVIES:
-      return { ...state, movies: action.data, moviesLoaded: true };
+      return { ...state, movies: action.data, moviesLoaded: true, moviesLoadedAt: Date.now() };
     case EReduxActionTypes.GET_MOVIE:
       return { ...state, movie: action.data, movieLoaded: true };
     case EReduxActionTypes.RESET_MOVIE:

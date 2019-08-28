@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { load, save } from 'redux-localstorage-simple';
 import reduxLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import './App.css';
@@ -14,7 +15,7 @@ import Toggle from './toggle/Toggle';
 
 const middleware = [reduxLogger, thunk];
 
-const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(...middleware)));
+const store = createStore(rootReducer, load(), composeWithDevTools(applyMiddleware(...middleware, save())));
 
 const App = () => (
   <Provider store={store}>

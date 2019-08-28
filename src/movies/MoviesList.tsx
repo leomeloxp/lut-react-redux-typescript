@@ -9,8 +9,9 @@ import { IMovie } from './reducer';
 
 class MoviesList extends PureComponent<ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>, {}> {
   public componentDidMount() {
-    const { getMovies, isLoaded } = this.props;
-    if (!isLoaded) {
+    const { getMovies, isLoaded, moviesLoadedAt } = this.props;
+    const oneHour = 60 * 60 * 1000;
+    if (!isLoaded || !moviesLoadedAt || Date.now() - moviesLoadedAt > oneHour) {
       getMovies();
       //this.props.getMovies();
     }
@@ -18,7 +19,6 @@ class MoviesList extends PureComponent<ReturnType<typeof mapStateToProps> & Retu
 
   public render() {
     const { movies, isLoaded } = this.props;
-
     if (!isLoaded) {
       return <h1>Loading...</h1>;
     }
@@ -34,7 +34,8 @@ class MoviesList extends PureComponent<ReturnType<typeof mapStateToProps> & Retu
 
 const mapStateToProps = (state: AppState) => ({
   movies: state.movies.movies,
-  isLoaded: state.movies.moviesLoaded
+  isLoaded: state.movies.moviesLoaded,
+  moviesLoadedAt: state.movies.moviesLoadedAt
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
