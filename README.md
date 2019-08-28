@@ -1,68 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Level Up Tutorials - React and Redux for Everyone (Typescript Edition)
 
-## Available Scripts
+This is a [Typescript](https://www.typescriptlang.org/) implementation of Level Up Tutorials Movie Database using React and Redux.
 
-In the project directory, you can run:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), check their repo to learn more about it.
 
-### `npm start`
+You can see the videos for the course that builds this application at [Level Up Tutorials](https://www.leveluptutorials.com/tutorials/redux-and-react-for-everyone/).
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting started
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Clone this repo
+- `npm install`
+- `npm start`
 
-### `npm test`
+See the Create React App docs for more details on what else can be done with this app.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Notes
 
-### `npm run build`
+As this project was created using Typescript instead of plain JS, I took some creative liberties and altered the code ever so slightly from what Scott originally wrote for the course. I still tried to keep as much of the code like the original as possible, which means there could be some minor bits which are not as nice Typescript code as it can be written.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The code is organised as one commit per video from video number 9 (where most of the actual project starts). I might try and make these tags so it can be easier to find later.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+If you find anything that is not inline with the course content or you believe to be wrong, feel free to open an issue or submit a PR.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+If you have any questions, wanna say thanks or chat more about TS or code in general, you can find me on Twitter ([@leomeloxp](https://twitter.com/leomeloxp)), my website [leomeloxp.dev](https://leomeloxp.dev) and on LUT's Slack group (see [LUT's site](https://www.leveluptutorials.com/) for the link to their Slack).
