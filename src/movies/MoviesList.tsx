@@ -7,15 +7,20 @@ import { getMovies } from './actions';
 import Movie from './Movie';
 import { IMovie } from './reducer';
 
-class MoviesList extends PureComponent<{ movies: IMovie[]; getMovies: typeof getMovies }, {}> {
+class MoviesList extends PureComponent<ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>, {}> {
   public componentDidMount() {
-    const { getMovies } = this.props;
-    getMovies();
-    //this.props.getMovies();
+    const { getMovies, isLoaded } = this.props;
+    if (!isLoaded) {
+      getMovies();
+      //this.props.getMovies();
+    }
   }
 
   public render() {
-    const { movies } = this.props;
+    const { movies, isLoaded } = this.props;
+    if (isLoaded) {
+      return <h1>Loading...</h1>;
+    }
     return (
       <MovieGrid>
         {movies.map((movie: IMovie) => (
@@ -27,7 +32,8 @@ class MoviesList extends PureComponent<{ movies: IMovie[]; getMovies: typeof get
 }
 
 const mapStateToProps = (state: AppState) => ({
-  movies: state.movies.movies
+  movies: state.movies.movies,
+  isLoaded: state.movies.moviesLoaded
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>

@@ -12,17 +12,19 @@ export interface IMovie {
 
 export interface IReduxMoviesState {
   movies: IMovie[];
+  moviesLoaded: boolean;
 }
 
 const initialState: IReduxMoviesState = {
-  movies: []
+  movies: [],
+  moviesLoaded: false
 };
 
 export default function(state: IReduxMoviesState = initialState, action: IReduxGetMoviesAction) {
   const { type, data } = action;
   switch (type) {
     case EReduxActionTypes.GET_MOVIES:
-      return { ...state, movies: data };
+      return { ...state, movies: data, moviesLoaded: true };
     default:
       return state;
   }
