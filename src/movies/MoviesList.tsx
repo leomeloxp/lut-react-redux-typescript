@@ -1,7 +1,8 @@
 /* eslint react/no-did-mount-set-state: 0 */
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import Movie, { IMovie } from './Movie';
+import Movie from './Movie';
+import { IMovie } from './reducer';
 
 class MoviesList extends PureComponent<{}, { movies: IMovie[] }> {
   state = {

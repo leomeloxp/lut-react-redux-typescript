@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-import { getMovies, IReduxGetMoviesAction, IReduxToggleMessageAction, toggleMessage } from './actions';
-import { IReduxState } from './reducer';
-import { AppState } from './rootReducer';
+import { AppState } from '../helpers/rootReducer';
+import { getMovies } from '../movies/actions';
+import { IReduxToggleMessageAction, toggleMessage } from './actions';
 
 const Toggle: React.FC<{
   messageVisibility: boolean;
   toggleMessage: ActionCreator<IReduxToggleMessageAction>;
-  getMovies: () => ThunkAction<Promise<IReduxGetMoviesAction>, IReduxState, undefined, IReduxGetMoviesAction>;
+  getMovies: typeof getMovies;
 }> = ({ getMovies, messageVisibility, toggleMessage }) => (
   <div>
     {messageVisibility && <p>You will be seeing this if redux action is toggled</p>}
@@ -19,7 +18,7 @@ const Toggle: React.FC<{
 );
 
 const mapStateToProps = (state: AppState) => ({
-  messageVisibility: state.message.messageVisibility
+  messageVisibility: state.toggle.messageVisibility
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<IReduxToggleMessageAction>) =>

@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import Overdrive from 'react-overdrive';
 import styled from 'styled-components';
-import { IMovie, Poster } from './Movie';
+import { Poster } from './Movie';
+import { IMovie } from './reducer';
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';

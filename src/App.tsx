@@ -6,11 +6,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import './App.css';
+import rootReducer from './helpers/rootReducer';
 import logo from './logo.svg';
-import MovieDetail from './MovieDetail';
-import MoviesList from './MoviesList';
-import rootReducer from './rootReducer';
-import Toggle from './Toggle';
+import MovieDetail from './movies/MovieDetail';
+import MoviesList from './movies/MoviesList';
+import Toggle from './toggle/Toggle';
 
 const middleware = [reduxLogger, thunk];
 
