@@ -6,6 +6,14 @@ export interface IReduxGetMoviesAction extends IReduxBaseAction {
   type: EReduxActionTypes.GET_MOVIES;
   data: IMovie[];
 }
+export interface IReduxGetMovieAction extends IReduxBaseAction {
+  type: EReduxActionTypes.GET_MOVIE;
+  data: IMovie;
+}
+
+export interface IReduxResetMovieAction extends IReduxBaseAction {
+  type: EReduxActionTypes.RESET_MOVIE;
+}
 
 export function getMovies(): ThunkAction<
   Promise<IReduxGetMoviesAction>,
@@ -23,5 +31,26 @@ export function getMovies(): ThunkAction<
       type: EReduxActionTypes.GET_MOVIES,
       data: movies.results
     });
+  };
+}
+
+export function getMovie(
+  id: string
+): ThunkAction<Promise<IReduxGetMovieAction>, IReduxMoviesState, undefined, IReduxGetMovieAction> {
+  return async (dispatch: ThunkDispatch<IReduxMoviesState, undefined, IReduxGetMovieAction>) => {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US`
+    );
+    const movie = await res.json();
+    return dispatch({
+      type: EReduxActionTypes.GET_MOVIE,
+      data: movie
+    });
+  };
+}
+
+export function resetMovie(): IReduxResetMovieAction {
+  return {
+    type: EReduxActionTypes.RESET_MOVIE
   };
 }

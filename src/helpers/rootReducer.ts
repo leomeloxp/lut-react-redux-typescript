@@ -3,8 +3,10 @@ import movies from '../movies/reducer';
 import toggle from '../toggle/reducer';
 
 export enum EReduxActionTypes {
-  TOGGLE_MESSAGE = 'TOGGLE_MESSAGE',
-  GET_MOVIES = 'GET_MOVIES'
+  GET_MOVIE = 'GET_MOVIE',
+  GET_MOVIES = 'GET_MOVIES',
+  RESET_MOVIE = 'RESET_MOVIE',
+  TOGGLE_MESSAGE = 'TOGGLE_MESSAGE'
 }
 
 export interface IReduxBaseAction {

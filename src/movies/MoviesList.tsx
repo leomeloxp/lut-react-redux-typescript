@@ -18,7 +18,8 @@ class MoviesList extends PureComponent<ReturnType<typeof mapStateToProps> & Retu
 
   public render() {
     const { movies, isLoaded } = this.props;
-    if (isLoaded) {
+
+    if (!isLoaded) {
       return <h1>Loading...</h1>;
     }
     return (

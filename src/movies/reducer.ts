@@ -1,5 +1,5 @@
 import { EReduxActionTypes } from '../helpers/rootReducer';
-import { IReduxGetMoviesAction } from './actions';
+import { IReduxGetMovieAction, IReduxGetMoviesAction, IReduxResetMovieAction } from './actions';
 
 export interface IMovie {
   backdrop_path: string;
@@ -13,18 +13,27 @@ export interface IMovie {
 export interface IReduxMoviesState {
   movies: IMovie[];
   moviesLoaded: boolean;
+  movie?: IMovie;
+  movieLoaded: boolean;
 }
 
 const initialState: IReduxMoviesState = {
   movies: [],
-  moviesLoaded: false
+  moviesLoaded: false,
+  movie: undefined,
+  movieLoaded: false
 };
 
-export default function(state: IReduxMoviesState = initialState, action: IReduxGetMoviesAction) {
-  const { type, data } = action;
-  switch (type) {
+type TMoviesReducerActions = IReduxGetMoviesAction | IReduxGetMovieAction | IReduxResetMovieAction;
+
+export default function(state: IReduxMoviesState = initialState, action: TMoviesReducerActions) {
+  switch (action.type) {
     case EReduxActionTypes.GET_MOVIES:
-      return { ...state, movies: data, moviesLoaded: true };
+      return { ...state, movies: action.data, moviesLoaded: true };
+    case EReduxActionTypes.GET_MOVIE:
+      return { ...state, movie: action.data, movieLoaded: true };
+    case EReduxActionTypes.RESET_MOVIE:
+      return { ...state, movie: undefined, movieLoaded: false };
     default:
       return state;
   }

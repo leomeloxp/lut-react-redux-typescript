@@ -1,35 +1,37 @@
 /* eslint react/no-did-mount-set-state: 0 */
 import React, { Component } from 'react';
 import Overdrive from 'react-overdrive';
+import { connect } from 'react-redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import styled from 'styled-components';
+import { AppState } from '../helpers/rootReducer';
+import { getMovie, resetMovie } from './actions';
 import { Poster } from './Movie';
-import { IMovie } from './reducer';
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
-class MovieDetail extends Component<{}, { movie?: IMovie }> {
-  state = {};
+class MovieDetail extends Component<ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>, {}> {
+  public componentDidMount() {
+    const { match } = this.props as any;
+    const { getMovie } = this.props;
 
-  async componentDidMount() {
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${
-          (this.props as any).match.params.id
-        }?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US`
-      );
-      const movie = await res.json();
-      this.setState({
-        movie
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    getMovie(match.params.id);
+    //this.props.getMovie(match.params.id);
   }
 
-  render() {
-    if (!('movie' in this.state)) return null;
-    const { movie }: { movie: IMovie } = this.state;
+  public componentWillUnmount() {
+    this.props.resetMovie();
+  }
+
+  public render() {
+    const { movie } = this.props;
+    console.log({ movie });
+
+    if (!movie || !movie.id) {
+      return null;
+    }
+
     return (
       <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
         <MovieInfo>
@@ -48,7 +50,24 @@ class MovieDetail extends Component<{}, { movie?: IMovie }> {
   }
 }
 
-export default MovieDetail;
+const mapStateToProps = (state: AppState) => ({
+  movie: state.movies.movie,
+  isLoaded: state.movies.movieLoaded
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+  bindActionCreators(
+    {
+      getMovie,
+      resetMovie
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieDetail);
 
 const MovieWrapper = styled.div<{ backdrop: string }>`
   position: relative;
